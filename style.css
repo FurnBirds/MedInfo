@@ -63,7 +63,7 @@ tr:nth-child(odd) {
 }
 
 .ptGender{
-    width: 100px;
+    width: 75px;
 }
 .ptID{
     width: 40px;
@@ -75,8 +75,9 @@ tr:nth-child(odd) {
     width: 100px;
 }
 .names{
-    width: 200px
+    width: 150px
 }
+
 
 .fieldName
 {
