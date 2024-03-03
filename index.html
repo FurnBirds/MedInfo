@@ -1,128 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Information Form</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="./dataops.js"></script>
-  </head>
-  <body>
-    <div class="Base">    
-        <h1>PLEASE ENTER YOUR DETAILS BELOW</h1>
-    </div>
-      <div id="whole-container">
-        <div class="grid-container">
-          <div id="profiletable">
-            <table>
-              <tr>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Gender</th>
-                <th>Date of Birth</th>
-                <th>Condition</th>
-              </tr>
-              <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-              </tr>
-              <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-              </tr>
-            </table>
-          </div>
-          <div>            
-            <H4>Your Name:</H4>
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname" value="David"><br><br>
-            <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <H4>Your Gender:</H4>
-            <input type="radio" id="Male" name="Gender" value=1>
-            <label for="Male">Male</label>
-            <input type="radio" id="Female" name="Gender" value=0>
-            <label for="Female">Female</label>
-            <input type="radio" id="Other" name="Gender" value=9>
-            <label for="Other">Other</label>
-            <br>
-            <br>
-            <H4>Your Birth Date:</H4>
-            <label for="birthdate">Birth Date:</label>
-            <input type="date" id="birthdate" name="birthdate">
-            <br>
-            <br>
-            <br>
-            <button onclick="myFunction()">Show Entered Data</button>            
-          </div>
-        </div>
+
+<head>
+  <title>Information Form</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="./dataops.js"></script>
+</head>
+
+<body>
+  
+  <div class="Base">
+    <h1>Search / Add / Edit Patient Details</h1>
+  
+
+  
+
+    <div class="grid-container">
+
+      <div>
+        <table id="profiletable">
+          <tr>
+            <th>ID</th>
+            <th class = "names">Last Name</th>
+            <th class = "names">First Name</th>
+            <th class = "ptGender">Gender</th>
+            <th class = "ptDOB">Date of Birth</th>
+            <th class = "ptBP">Blood Pressure</th>
+            <th>Condition</th>
+          </tr>
+
+        </table>
       </div>
 
-        <!-- <br><br>
-        <h1>YOUR ENTERED DETAILS</h1>
-        <div id = "Results">
-          <table>
-            
-            <tr id="TableHeading">
-              <th>Field</th>
-              <th>Data</th>
-            </tr>
-            
-            <tr>
-              <td class="fieldName">First Name:</td>
-              <td class="data" id="FirstName"></td>
-            </tr>
+      <div id="profileCard">
+        <H4>Your Name:</H4>
+        <label for="fname" class="flabel">First name:</label><br>
+        <input type="text" id="fname" name="fname">
+        <br><br>
+        <label for="lname" class="flabel">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+        <br><br>
+        <H4>Your Gender:</H4>
+        <input type="radio" id="Male" name="Gender" value=1>
+        <label for="Male" class="flabel">Male</label>
+        <input type="radio" id="Female" name="Gender" value=0>
+        <label for="Female" class="flabel">Female</label>
+        <input type="radio" id="Other" name="Gender" value=9>
+        <label for="Other" class="flabel">Other</label>
+        <br><br>
+        <H4>Your Birth Date:</H4>
+        <label for="birthdate" class="flabel">Birth Date:</label><br>
+        <input type="date" id="birthdate" name="birthdate">
+        <br><br>
+        <H4>Medical Information:</H4>
+        <label for="Systolic" class="flabel">Blood Pressure:</label><br>
+        <input type="number" id="systol" name="systol"> / 
+        <input type="number" id="diastol" name="diastol">
+        <br><br>
+        <label for="condition" class="flabel">Condition:</label><br>
+        <input type="text" id="condition" name="condition">
+        <br><br>
+        <button onclick="myFunction()">Show Entered Data</button>
+      </div>
 
-            <tr>
-              <td class="fieldName">Last Name:</td>
-              <td class="data" id="LastName"></td>
-            </tr>
-
-            <tr>
-              <td class="fieldName">Gender:</td>
-              <td class="data" id="GenderID"></td>
-            </tr>
-
-            <tr>
-              <td class="fieldName">Birth Date:</td>
-              <td class="data" id="BirthDateResult"></td>
-            </tr>
-
-          </table>
-        </div> -->
-
-        
-          <script>
-            function myFunction() {
-              document.getElementById("FirstName").innerText = document.getElementById("fname").value;
-              document.getElementById("LastName").innerText = document.getElementById("lname").value;
-              
-              var radioButtons = document.getElementsByName("Gender");
-              //for looping each radio item for Gender
-              for (var i = 0; i < radioButtons.length; i++)
-              {
-                //if a radio button is selected, the id is set into variable GenderResult
-                if (radioButtons[i].checked) {
-                  var GenderResult = radioButtons[i].id;
-                  break;
-                }
-              }
-              document.getElementById("GenderID").innerHTML = GenderResult;
-
-              //the birthdate is formatted to d/m/yyyy by breaking up the day month year into components
-              var BDunformatted = document.getElementById("birthdate").value;
-              const currentDate = new Date(BDunformatted);
-              const day = currentDate.getDate();
-              const month = currentDate.getMonth() + 1; // Months are zero-based
-              const year = currentDate.getFullYear();
-              
-              //birthdate components are reassembled into day month year
-              const formattedDate = `${day}/${month}/${year}`;
-              document.getElementById("BirthDateResult").innerHTML = formattedDate
-
-            }
-            </script>
+    </div>
     
-    
-  </body>
+  <script>
+    function myFunction() {
+      document.getElementById("FirstName").innerText = document.getElementById("fname").value;
+      document.getElementById("LastName").innerText = document.getElementById("lname").value;
+
+      var radioButtons = document.getElementsByName("Gender");
+      //for looping each radio item for Gender
+      for (var i = 0; i < radioButtons.length; i++) {
+        //if a radio button is selected, the id is set into variable GenderResult
+        if (radioButtons[i].checked) {
+          var GenderResult = radioButtons[i].id;
+          break;
+        }
+      }
+      document.getElementById("GenderID").innerText = GenderResult;
+
+      //the birthdate is formatted to d/m/yyyy by breaking up the day month year into components
+      var BDunformatted = document.getElementById("birthdate").value;
+      const currentDate = new Date(BDunformatted);
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() + 1; // Months are zero-based
+      const year = currentDate.getFullYear();
+
+      //birthdate components are reassembled into day month year
+      const formattedDate = `${day}/${month}/${year}`;
+      document.getElementById("BirthDateResult").innerHTML = formattedDate
+
+    }
+  </script>
+
+</div>
+</body>
+
 </html>
