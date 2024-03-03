@@ -1,0 +1,96 @@
+
+
+body::before {
+    content: "";
+    background-image: url(./Img/Pathology-Lab-Management-Software.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.3;
+}
+
+#whole-container{
+    width: 1500px;
+    min-height: 400px;
+    max-height: 1800px;
+    margin: auto;
+
+    
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+}
+  
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 70% 25%;
+    gap: 5px;
+    background-color: transparent;
+    padding: 1px;
+    
+  }
+  
+  .grid-container > div {
+    
+    background-color: transparent;
+    border: 2px solid lightgrey;
+    text-align: left;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+.Base
+{
+    position: relative;
+    text-align: center;
+}
+
+th, td
+{
+    border:1px solid black
+}
+
+table
+{
+    margin: auto;
+    position: relative;
+    width: 30%;
+    border:1px solid black;
+    table-layout: auto;
+    background-color: azure;
+}
+
+.fieldName
+{
+    text-align: right;
+    width: 200px;
+}
+
+.data
+{
+    text-align: left;
+}
+
+#TableHeading
+{
+    color: darkblue;
+}
