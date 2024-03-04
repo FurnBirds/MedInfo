@@ -23,6 +23,7 @@
             <th class = "names">First Name</th>
             <th class = "ptGender">Gender</th>
             <th class = "ptDOB">Date of Birth</th>
+            <th class = "ptOccupation">Occupation</th>
             <th class = "ptBP">Blood Pressure</th>
             <th class = "ptCondition">Condition</th>
           </tr>
@@ -31,14 +32,15 @@
       </div>
 
       <div id="profileCard">
-        <H4>Your Name:</H4>
+        <div><button id="newButton">New Patient Data</button></div>
+        <H4>ID: </H4><H4 id="idDisplay"><H4></H4>
         <label for="fname" class="flabel">First name:</label><br>
         <input type="text" id="fname" name="fname">
         <br><br>
         <label for="lname" class="flabel">Last name:</label><br>
         <input type="text" id="lname" name="lname">
         <br><br>
-        <H4>Your Gender:</H4>
+        <H4>Demographics:</H4>
         <input type="radio" id="Male" name="Gender" value=1>
         <label for="Male" class="flabel">Male</label>
         <input type="radio" id="Female" name="Gender" value=0>
@@ -46,7 +48,6 @@
         <input type="radio" id="Other" name="Gender" value=9>
         <label for="Other" class="flabel">Other</label>
         <br><br>
-        <H4>Your Birth Date:</H4>
         <label for="birthdate" class="flabel">Birth Date:</label><br>
         <input type="date" id="birthdate" name="birthdate">
         <br><br>
@@ -58,7 +59,7 @@
         <label for="condition" class="flabel">Condition:</label><br>
         <input type="text" id="condition" name="condition">
         <br><br>
-        <button onclick="myFunction()">Show Entered Data</button>
+        <button id="saveButton">Save</button>
       </div>
 
     </div>

@@ -13,27 +13,22 @@ function constructPtDataRow(ptData){
     <td class = "names" id = "ptFirstname">${ptData.firstname}</td>
     <td class = "ptGender">${ptData.gender ?? ""}</td>
     <td class = "ptDOB">${ptData.dob ?? ""}</td>
+    <td class = "ptOccupation">${ptData.occupation ?? ""}</td>
     <td class = "ptBP">${ptData.systolicBP ?? ""} /  ${ptData.diastolicBP ?? ""}</td>
     <td class = "ptCondition"> ${ptData.medicalIssue ?? ""} </td>
     `
     ptDataRow.addEventListener('click', rowClick)
     document.getElementById('profileTable').append(ptDataRow)
-    console.log(ptData.id)
+    //console.log(ptData.id)
 }
 
 
 function rowClick() {
-    fetch('http://localhost:3000/ptProfile/')
-    console.log(this.dataID)
+    console.log(this.querySelector('.ptGender').innerText)
+    
+    
 }
 
-/*
-function addRowListeners(){
-    document.getElementsByClassName('row').addRowListeners
-    console.log(rows)
-    rows.array.fo
-}
-*/
 
 function getPtProfiles() {    
     fetch('http://localhost:3000/ptProfile')
@@ -53,7 +48,6 @@ function resetTable(){
     
     
 }
-
 
 refreshBut.addEventListener('click', resetTable)
 resetPtProfileList();
