@@ -7,7 +7,7 @@ function constructPtDataRow(ptData){
     let ptDataRow = document.createElement('tr')
     ptDataRow.className = 'row'
     ptDataRow.dataID = ptData.id
-    let ptGender = genderTranslation(ptData.gender)
+    let ptGender = TranslateGenderToText(ptData.gender)
 
     ptDataRow.innerHTML = `
     <td class = "ptID" id = "ptID">${ptData.id}</td>
@@ -24,7 +24,7 @@ function constructPtDataRow(ptData){
     //console.log(ptData.id)
 }
 
-function genderTranslation(genderVal){
+function TranslateGenderToText(genderVal){
     let ptGender
     switch(genderVal){
         case 1:
@@ -43,12 +43,8 @@ function genderTranslation(genderVal){
     return ptGender;
 }
 
-function rowClick() {
-    document.getElementById('fname').value = this.querySelector('#ptFirstname').innerText;
-    document.getElementById('lname').value = this.querySelector('#ptSurname').innerText;
-    
-    
-    switch(this.querySelector('.ptGender').innerText){
+function radioCheckGender(genderText){
+    switch(genderText){
         case "Male":
             document.getElementById('Male').checked = true;
             break;
@@ -59,12 +55,41 @@ function rowClick() {
             document.getElementById('Other').checked = true;
             break;
         default:
+            document.getElementById('Other').checked = false;
+            document.getElementById('Female').checked = false;
+            document.getElementById('Male').checked = false;
             break;
     }
-    
-    
-    
 }
+
+function populateFields(dataJSON){
+    document.getElementById('idDisplay').innerText = "ID: " + dataJSON.id;
+    document.getElementById('fname').value = dataJSON.firstname;
+    document.getElementById('lname').value = dataJSON.surname; 
+    radioCheckGender(dataJSON.gender);
+    document.getElementById('birthdate').value = convertDateFormat(dataJSON.dob);
+    document.getElementById('occupation').value = dataJSON.occupation;
+
+}
+
+function rowClick() {
+    let idText = this.querySelector('#ptID').innerText;
+    fetch('http://localhost:3000/ptProfile/' + idText)
+    .then(singleResult => singleResult.json())
+    .then(singlePtData => populateFields(singlePtData))
+}
+
+function convertDateFormat(inputDate) {
+    const parts = inputDate.split('/');
+    if (parts.length === 3) {
+      const [day, month, year] = parts;
+      const formattedDate = `${year}-${month}-${day}`;
+      return formattedDate;
+    } else {
+      // Handle invalid date format
+      return null;
+    }
+  }
 
 
 function getPtProfiles() {    
