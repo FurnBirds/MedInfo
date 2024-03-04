@@ -37,8 +37,9 @@ tr:nth-child(odd) {
 }
 
 .grid-container {
+    font-family: arial, sans-serif;
     display: grid;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     grid-template-columns: 75% 25%;
     gap: 5px;
     padding: 1px;    
@@ -95,6 +96,10 @@ tr:nth-child(odd) {
   }
 
 #condition{
-    width: 350px;
-    height: 150px;
+    width: 300px;
+    height: 200px;
+}
+
+#idDisplay{
+    color: blue;
 }

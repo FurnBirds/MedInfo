@@ -1,9 +1,9 @@
 let rows;
 let refreshBut = document.getElementById('refreshButton')
+let ptProfile
 
 
-
-function constructPtDataRow(ptData){
+function constructPtDataRow(ptData) {
     let ptDataRow = document.createElement('tr')
     ptDataRow.className = 'row'
     ptDataRow.dataID = ptData.id
@@ -24,9 +24,9 @@ function constructPtDataRow(ptData){
     //console.log(ptData.id)
 }
 
-function TranslateGenderToText(genderVal){
+function TranslateGenderToText(genderVal) {
     let ptGender
-    switch(genderVal){
+    switch (genderVal) {
         case 1:
             ptGender = "Male";
             break;
@@ -43,15 +43,15 @@ function TranslateGenderToText(genderVal){
     return ptGender;
 }
 
-function radioCheckGender(genderText){
-    switch(genderText){
-        case "Male":
+function radioCheckGender(genderText) {
+    switch (genderText) {
+        case 1:
             document.getElementById('Male').checked = true;
             break;
-        case "Female":
+        case 0:
             document.getElementById('Female').checked = true;
             break;
-        case "Other":
+        case 9:
             document.getElementById('Other').checked = true;
             break;
         default:
@@ -62,53 +62,65 @@ function radioCheckGender(genderText){
     }
 }
 
-function populateFields(dataJSON){
+function populateFields(dataJSON) {
     document.getElementById('idDisplay').innerText = "ID: " + dataJSON.id;
     document.getElementById('fname').value = dataJSON.firstname;
-    document.getElementById('lname').value = dataJSON.surname; 
+    document.getElementById('lname').value = dataJSON.surname;
     radioCheckGender(dataJSON.gender);
-    document.getElementById('birthdate').value = convertDateFormat(dataJSON.dob);
-    document.getElementById('occupation').value = dataJSON.occupation;
-
+    document.getElementById('birthdate').value = convertDateFormat(dataJSON.dob) ?? null
+    document.getElementById('occupation').value = dataJSON.occupation ?? null;
+    document.getElementById('systol').value = dataJSON.systolicBP ?? null;
+    document.getElementById('diastol').value = dataJSON.diastolicBP ?? null;
+    document.getElementById('condition').value = dataJSON.medicalIssue ?? null;
+    console.log(ptProfile)
 }
 
-function rowClick() {
+function rowClick(e) {
     let idText = this.querySelector('#ptID').innerText;
     fetch('http://localhost:3000/ptProfile/' + idText)
-    .then(singleResult => singleResult.json())
-    .then(singlePtData => populateFields(singlePtData))
+        .then(singleResult => singleResult.json())
+        .then(function (data) {
+            ptProfile = data;
+            return ptProfile
+        })
+        .then(singlePtData => populateFields(singlePtData))
 }
 
 function convertDateFormat(inputDate) {
-    const parts = inputDate.split('/');
-    if (parts.length === 3) {
-      const [day, month, year] = parts;
-      const formattedDate = `${year}-${month}-${day}`;
-      return formattedDate;
-    } else {
-      // Handle invalid date format
-      return null;
+    if (inputDate != null) {
+        const parts = inputDate.split('/');
+        if (parts.length === 3) {
+            const [day, month, year] = parts;
+            const formattedDate = `${year}-${month}-${day}`;
+            return formattedDate;
+        } else {
+
+            return null;
+        }
     }
-  }
+    else{
+        return null
+    }
+}
 
 
-function getPtProfiles() {    
+function getPtProfiles() {
     fetch('http://localhost:3000/ptProfile')
-    .then(package => package.json())
-    .then(ptListing => ptListing.forEach(ptData => {constructPtDataRow(ptData)}))
+        .then(package => package.json())
+        .then(ptListing => ptListing.forEach(ptData => { constructPtDataRow(ptData) }))
 };
 
-function resetPtProfileList(){
+function resetPtProfileList() {
     getPtProfiles()
 }
 
-function resetTable(){
-    for(const removeRow of removeAllRows = document.querySelectorAll('tr.row')){
+function resetTable() {
+    for (const removeRow of removeAllRows = document.querySelectorAll('tr.row')) {
         removeRow.remove()
     };
     resetPtProfileList();
-    
-    
+
+
 }
 
 refreshBut.addEventListener('click', resetTable)
