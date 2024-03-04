@@ -14,19 +14,62 @@
    {
       "id": "2",
       "surname": "Harry",
-      "firstname": "LEE"
+      "firstname": "LEA"
     },
     {
       "id": "3",
-      "surname": "WELLS",
-      "firstname": "Uma",
-      "dob": "25/09/2000",
+      "surname": "KHEE",
+      "firstname": "Jason",
+      "dob": "25/05/2001",
+      "gender": "Male",
+      "occupation": "Cashier",
+      "systolicBP": 121,
+      "diastolicBP": 79,
+      "medicalIssue": "sports injury. R shoulder impact. brusing. requires cold pack"
+    },
+    {
+      "id": "4",
+      "surname": "THANER",
+      "firstname": "Mary",
+      "dob": "01/02/2003",
       "gender": "Female",
-      "occupation": "General Manager",
-      "systolicBP": 124,
-      "diastolicBP": 85,
-      "medicalIssue": "type 2 diabetes. currently on insulin twice a day, diet control has been unsuccessful"
+      "occupation": "Parking inspector",
+      "systolicBP": 131,
+      "diastolicBP": 79,
+      "medicalIssue": "dehydration from working on sunny day"
+    },
+    {
+      "id": "5",
+      "surname": "MARIOS",
+      "firstname": "Adam",
+      "dob": "21/11/1977",
+      "gender": "Male",
+      "occupation": "Teacher",
+      "systolicBP": 143,
+      "diastolicBP": 92,
+      "medicalIssue": "hypertension. very stressful workplace"
+    },
+    {
+      "id": "6",
+      "surname": "FOO",
+      "firstname": "Steven",
+      "dob": "10/03/1987",
+      "gender": "Male",
+      "occupation": "Business Analyst",
+      "systolicBP": 135,
+      "diastolicBP": 89,
+      "medicalIssue": "Reflux issues. also hypertension being monitored."
+    },
+    {
+      "id": "7",
+      "surname": "FLOWERS",
+      "firstname": "Lisa",
+      "dob": "14/06/1999",
+      "gender": "Female",
+      "occupation": "Secretary",
+      "systolicBP": 110,
+      "diastolicBP": 72,
+      "medicalIssue": "cold flu sx. Covid negative. some fever with vomitting."
     }
-    
   ]
 }
