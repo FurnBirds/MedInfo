@@ -33,34 +33,34 @@
 
       <div id="profileCard">
         <div><button id="newButton">New Patient Data</button></div>
-        <H4 id="idDisplay">ID: </H4>
+        <H4 id="idDisplay">ID: (New Patient Profile)</H4>
         <label for="fname" class="flabel">First name:</label><br>
-        <input type="text" id="fname" name="fname">
+        <input type="text" class="valueInput" id="fname" name="fname">
         <br><br>
         <label for="lname" class="flabel">Last name:</label><br>
-        <input type="text" id="lname" name="lname">
+        <input type="text" class="valueInput" id="lname" name="lname">
         <br><br>
         <H4>Demographics:</H4>
-        <input type="radio" id="Male" name="Gender" value=1>
+        <input type="radio" class="checkInput" id="Male" name="Gender" value=1>
         <label for="Male" class="flabel">Male</label>
-        <input type="radio" id="Female" name="Gender" value=0>
+        <input type="radio" class="checkInput" id="Female" name="Gender" value=0>
         <label for="Female" class="flabel">Female</label>
-        <input type="radio" id="Other" name="Gender" value=9>
+        <input type="radio" class="checkInput" id="Other" name="Gender" value=9>
         <label for="Other" class="flabel">Other</label>
         <br><br>
         <label for="birthdate" class="flabel">Birth Date:</label><br>
-        <input type="date" id="birthdate" name="birthdate">
+        <input type="date" class="valueInput" id="birthdate" name="birthdate">
         <br><br>
         <label for="occupation" class="occupation">Occupation:</label><br>
-        <input type="text" id="occupation" name="occupation">
+        <input type="text" class="valueInput" id="occupation" name="occupation">
         <br><br>
         <H4>Medical Information:</H4>
         <label for="Systolic" class="flabel">Blood Pressure:</label><br>
-        <input type="number" id="systol" name="systol"> / 
-        <input type="number" id="diastol" name="diastol">
+        <input type="number" class="valueInput" id="systol" name="systol"> / 
+        <input type="number" class="valueInput" id="diastol" name="diastol">
         <br><br>
         <label for="condition" class="flabel">Condition:</label><br>
-        <textarea type="text" id="condition" name="condition" rows="8" col="100"></textarea>
+        <textarea type="text" class="valueInput" id="condition" name="condition" rows="8" col="100"></textarea>
         <!-- <input type="text" wrap="" id="condition" name="condition"> -->
         <br><br>
         <button id="saveButton">Save</button>
