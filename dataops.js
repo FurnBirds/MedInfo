@@ -40,7 +40,7 @@ function populateFields(ptProfileData) {
     //console.log(ptProfile)
 }
 
-function newProfile(){
+function newProfile() {
     ptProfile = null;
     emptyFields();
     newProfileMode = true;
@@ -49,11 +49,11 @@ function newProfile(){
 
 function emptyFields() {
     let allValueInputs = document.querySelectorAll('.valueInput');
-    for(control of allValueInputs){
+    for (control of allValueInputs) {
         control.value = ""
     };
     let allCheckInputs = document.querySelectorAll('.checkInput');
-    for(control of allCheckInputs){
+    for (control of allCheckInputs) {
         control.checked = false
     };
     document.getElementById('idDisplay').innerText = "ID:"
@@ -65,16 +65,16 @@ async function rowClick() {
     populateFields(ptProfile);
 }
 
-async function getSingleProfile(id) {  
+async function getSingleProfile(id) {
     let response = await fetch('http://localhost:3000/ptProfile/' + id);
     let ptData = await response.json();
     return ptData
-    }
+}
 
 
 function getPtProfiles() {
     fetch('http://localhost:3000/ptProfile')
-    
+
         .then(package => package.json())
         .then(ptListing => ptListing.forEach(ptData => { constructPtDataRow(ptData) }))
 };
@@ -117,29 +117,29 @@ async function patchProfile() {
 
 async function postProfile() {
     let response =
-    await fetch('http://localhost:3000/ptProfile/',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(ptProfile)
-        }
+        await fetch('http://localhost:3000/ptProfile/',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ptProfile)
+            }
         );
     return responseJSON = await response.json();
 }
 
 async function saveProfile() {
-    if(!newProfileMode)
+    if (!newProfileMode)
     /////create a new record if new profile button not pressed.
     {
-    workingID = ptProfile.id;
-    await preSaveProfile();
-    ptProfile = await patchProfile();
-    await resetTable()
+        workingID = ptProfile.id;
+        await preSaveProfile();
+        ptProfile = await patchProfile();
+        await resetTable()
     }
     /////create a new record if new profile button pressed.
-    else{
+    else {
         await preSaveProfile();
         ptProfile = await postProfile();
         newProfileMode = false;
@@ -221,8 +221,7 @@ function convertDateFormat(inputDate) {
     }
 }
 
-function convertToAusDate(dateValue)
-{
+function convertToAusDate(dateValue) {
     if (dateValue != null) {
         const parts = dateValue.split('-');
         if (parts.length === 3) {

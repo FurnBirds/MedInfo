@@ -10,7 +10,9 @@ body::before {
     opacity: 0.3;
 }
 
-
+h1{
+    font-family: sans-serif;
+}
 
 table {
     font-family: arial, sans-serif;
