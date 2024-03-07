@@ -9,7 +9,7 @@
       "occupation": "General Manager",
       "systolicBP": "124",
       "diastolicBP": "86",
-      "medicalIssue": "type 2 diabetes. currently on insulin twice a day, diet control has been unsuccessful"
+      "medicalIssue": "type 2 diabetes. currently on insulin twice a day, diet control has been unsuccessful. Trying Duramine\n\n\n"
     },
     {
       "id": "2",
@@ -74,7 +74,7 @@
       "gender": 0,
       "occupation": "Secretary",
       "systolicBP": "110",
-      "diastolicBP": "76",
+      "diastolicBP": "75",
       "medicalIssue": "cold flu sx. Covid negative. some fever with vomitting. Requires IV saline"
     },
     {
@@ -84,8 +84,85 @@
       "dob": "07/03/2024",
       "gender": 1,
       "occupation": "Student",
+      "systolicBP": "123",
+      "diastolicBP": "77",
+      "medicalIssue": ""
+    },
+    {
+      "id": "8f31",
+      "firstname": "Joanne",
+      "surname": "Peterson",
+      "dob": "30/06/1999",
+      "gender": 0,
+      "occupation": "Police Woman",
+      "systolicBP": "115",
+      "diastolicBP": "61",
+      "medicalIssue": ""
+    },
+    {
+      "id": "a5ea",
+      "firstname": "Michael",
+      "surname": "Heartridge",
+      "dob": null,
+      "gender": 1,
+      "occupation": "Piolot",
       "systolicBP": "",
       "diastolicBP": "",
+      "medicalIssue": ""
+    },
+    {
+      "id": "dbda",
+      "firstname": "Stephanie",
+      "surname": "YEO",
+      "dob": null,
+      "gender": 0,
+      "occupation": "",
+      "systolicBP": "",
+      "diastolicBP": "",
+      "medicalIssue": ""
+    },
+    {
+      "id": "1f88",
+      "firstname": "Johnny",
+      "surname": "TRAN",
+      "dob": null,
+      "gender": 1,
+      "occupation": "",
+      "systolicBP": "",
+      "diastolicBP": "",
+      "medicalIssue": "Laceration to left lower arm at work. Sharp falling object caught on skin."
+    },
+    {
+      "id": "e4f3",
+      "firstname": "Felicity",
+      "surname": "ROGERS",
+      "dob": "18/02/2002",
+      "gender": 0,
+      "occupation": "Admin",
+      "systolicBP": "114",
+      "diastolicBP": "69",
+      "medicalIssue": "3 months pregnant. Ultrasound normal. Nil medical hx. Normal pregnancy.\n"
+    },
+    {
+      "id": "0b7d",
+      "firstname": "Mei",
+      "surname": "WU",
+      "dob": "11/03/2021",
+      "gender": 0,
+      "occupation": "",
+      "systolicBP": "125",
+      "diastolicBP": "77",
+      "medicalIssue": "Lacerations to both hands after falling at play ground. Would dressed."
+    },
+    {
+      "id": "639f",
+      "firstname": "Ning",
+      "surname": "LEE",
+      "dob": "06/09/1977",
+      "gender": 0,
+      "occupation": "",
+      "systolicBP": "100",
+      "diastolicBP": "68",
       "medicalIssue": ""
     }
   ]

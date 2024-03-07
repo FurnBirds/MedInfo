@@ -2,8 +2,9 @@ let rows;
 let refreshBut = document.getElementById('refreshButton');
 let saveBut = document.getElementById('saveButton');
 let newBut = document.getElementById('newButton');
-let newProfileMode = true;
+let newProfileMode = true
 let ptProfile
+let workingID
 
 
 function constructPtDataRow(ptData) {
@@ -20,22 +21,22 @@ function constructPtDataRow(ptData) {
     <td class = "ptDOB">${ptData.dob ?? ""}</td>
     <td class = "ptOccupation">${ptData.occupation ?? ""}</td>
     <td class = "ptBP">${ptData.systolicBP ?? ""} /  ${ptData.diastolicBP ?? ""}</td>
-    <td class = "ptCondition"> ${ptData.medicalIssue ?? ""} </td>
+    <td class = "ptCondition">${ptData.medicalIssue ?? ""}</td>
     `
     ptDataRow.addEventListener('click', rowClick)
     document.getElementById('profileTable').append(ptDataRow)
 }
 
-function populateFields(dataJSON) {
-    document.getElementById('idDisplay').innerText = "ID: " + dataJSON.id;
-    document.getElementById('fname').value = dataJSON.firstname;
-    document.getElementById('lname').value = dataJSON.surname;
-    radioCheckGender(dataJSON.gender);
-    document.getElementById('birthdate').value = convertDateFormat(dataJSON.dob) ?? null
-    document.getElementById('occupation').value = dataJSON.occupation ?? null;
-    document.getElementById('systol').value = dataJSON.systolicBP ?? null;
-    document.getElementById('diastol').value = dataJSON.diastolicBP ?? null;
-    document.getElementById('condition').value = dataJSON.medicalIssue ?? null;
+function populateFields(ptProfileData) {
+    document.getElementById('idDisplay').innerText = "ID: " + ptProfileData.id;
+    document.getElementById('fname').value = ptProfileData.firstname;
+    document.getElementById('lname').value = ptProfileData.surname;
+    radioCheckGender(ptProfileData.gender);
+    document.getElementById('birthdate').value = convertDateFormat(ptProfileData.dob) ?? null
+    document.getElementById('occupation').value = ptProfileData.occupation ?? null;
+    document.getElementById('systol').value = ptProfileData.systolicBP ?? null;
+    document.getElementById('diastol').value = ptProfileData.diastolicBP ?? null;
+    document.getElementById('condition').value = ptProfileData.medicalIssue ?? null;
     //console.log(ptProfile)
 }
 
@@ -56,33 +57,24 @@ function emptyFields() {
         control.checked = false
     };
     document.getElementById('idDisplay').innerText = "ID:"
-
-    // document.getElementById('idDisplay').innerText = "ID:";
-    // document.getElementById('fname').value = "";
-    // document.getElementById('lname').value = "";
-    // resetGenderRadioValue();
-    // document.getElementById('birthdate').value = null;
-    // document.getElementById('occupation').value = null;
-    // document.getElementById('systol').value = dataJSON.systolicBP ?? null;
-    // document.getElementById('diastol').value = dataJSON.diastolicBP ?? null;
-    // document.getElementById('condition').value = dataJSON.medicalIssue ?? null;
-    //console.log(ptProfile)
 }
 
-function rowClick() {
-    
-    let idText = this.querySelector('#ptID').innerText;
-    fetch('http://localhost:3000/ptProfile/' + idText)
-        .then(singleResult => singleResult.json())
-        .then(function (data) {
-            ptProfile = data;
-            return ptProfile
-        })
-        .then(singlePtData => populateFields(singlePtData))
+async function rowClick() {
+    newProfileMode = false;
+    ptProfile = await getSingleProfile(this.querySelector('#ptID').innerText);
+    populateFields(ptProfile);
 }
+
+async function getSingleProfile(id) {  
+    let response = await fetch('http://localhost:3000/ptProfile/' + id);
+    let ptData = await response.json();
+    return ptData
+    }
+
 
 function getPtProfiles() {
     fetch('http://localhost:3000/ptProfile')
+    
         .then(package => package.json())
         .then(ptListing => ptListing.forEach(ptData => { constructPtDataRow(ptData) }))
 };
@@ -98,14 +90,7 @@ function resetTable() {
     resetPtProfileList();
 }
 
-function delayedReset(){
-    setTimeout(resetTable(), 2000000)
-}
-
-async function saveProfile() {
-    if(newProfileMode = false){
-    let workingID = ptProfile.id;
-    };
+function preSaveProfile() {
     ptProfile = {
         firstname: document.getElementById('fname').value,
         surname: document.getElementById('lname').value,
@@ -115,21 +100,24 @@ async function saveProfile() {
         systolicBP: document.getElementById('systol').value,
         diastolicBP: document.getElementById('diastol').value,
         medicalIssue: document.getElementById('condition').value
-    }
+    };
+}
 
-    if(newProfileMode = false)
-    {
-        fetch('http://localhost:3000/ptProfile/' + workingID, {
+async function patchProfile() {
+    let response =
+        await fetch('http://localhost:3000/ptProfile/' + workingID, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(ptProfile)
-        })
-        .then(delayedReset())
-    }else
-    {
-        fetch('http://localhost:3000/ptProfile/',
+        });
+    return responseJSON = await response.json();
+}
+
+async function postProfile() {
+    let response =
+    await fetch('http://localhost:3000/ptProfile/',
         {
             method: 'POST',
             headers: {
@@ -137,9 +125,27 @@ async function saveProfile() {
             },
             body: JSON.stringify(ptProfile)
         }
-        )
+        );
+    return responseJSON = await response.json();
+}
+
+async function saveProfile() {
+    if(!newProfileMode)
+    /////create a new record if new profile button not pressed.
+    {
+    workingID = ptProfile.id;
+    await preSaveProfile();
+    ptProfile = await patchProfile();
+    await resetTable()
     }
-    
+    /////create a new record if new profile button pressed.
+    else{
+        await preSaveProfile();
+        ptProfile = await postProfile();
+        newProfileMode = false;
+        document.getElementById('idDisplay').innerText = "ID: " + ptProfile.id
+        await resetTable()
+    }
 }
 
 function radioCheckGender(genderText) {

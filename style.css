@@ -19,6 +19,7 @@ table {
     position: relative;
     margin: auto;
     font-size: 15px;
+    
     scroll-behavior: auto;    
 }
   
@@ -39,10 +40,9 @@ tr:nth-child(odd) {
 .grid-container {
     font-family: arial, sans-serif;
     display: grid;
-    /* flex-wrap: wrap; */
     grid-template-columns: 75% 25%;
     gap: 5px;
-    padding: 1px;    
+    padding: 1px;
   }
   
 
@@ -50,12 +50,23 @@ tr:nth-child(odd) {
     width: 100px;
 }
 
-  .grid-container > div {    
-    border: 2px solid lightgrey;
-    text-align: left;
-    padding: 10px;
-    font-size: 15px;
-  }
+/* .tableDiv{
+    max-height: 500px;
+    overflow-y: scroll;
+} */
+
+.grid-container > div {
+border: 2px solid lightgrey;
+text-align: left;
+padding: 10px;
+font-size: 15px;
+}
+
+#tableDiv {
+    max-height: 800px;
+    overflow-y: scroll;
+
+}
 
 .Base
 {
@@ -77,6 +88,10 @@ tr:nth-child(odd) {
 }
 .names{
     width: 150px
+}
+.ptCondition{
+    max-width: 400px;
+    overflow-wrap: break-word;
 }
 
 
